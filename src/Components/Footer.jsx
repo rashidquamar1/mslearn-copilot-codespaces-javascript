@@ -36,30 +36,34 @@ const Footer = (props) => {
     medium,
     name,
     primaryColor,
+    secondaryColor,
     twitter,
     youTube,
   } = props;
 
   return (
-    <div
+    <footer
       id="footer"
+      className="footer-section"
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "2.5rem",
-        padding: "5rem 0 3rem",
         backgroundColor: primaryColor,
-        width: "100vw"
+        "--footer-highlight": secondaryColor,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "2.5rem",
-        }}
-      >
+      <div className="footer-top">
+        <div>
+          <p className="footer-kicker">03 / Keep in touch</p>
+          <h2>Good work starts with <em>a conversation.</em></h2>
+        </div>
+        {email && (
+          <a className="footer-email" href={`mailto:${email}`}>
+            <span>Send an email</span>
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+        )}
+      </div>
+      <div className="footer-bottom">
+        <nav className="social-links" aria-label="Social links">
         {email && (
           <a href={`mailto:${email}`}>
             <img src={envelopeIcon} alt="email" className="socialIcon" />
@@ -112,11 +116,10 @@ const Footer = (props) => {
             <img src={youTubeIcon} alt="YouTube" className="socialIcon" />
           </a>
         )}
+        </nav>
+        <p className="footer-credit">Created by {name}</p>
       </div>
-      <p className="small" style={{ marginTop: 0, color: "white" }}>
-        Created by {name}
-      </p>
-    </div>
+    </footer>
   );
 };
 
@@ -133,6 +136,7 @@ Footer.propTypes = {
   medium: PropTypes.string,
   name: PropTypes.string.isRequired,
   primaryColor: PropTypes.string,
+  secondaryColor: PropTypes.string,
   twitter: PropTypes.string,
   youTube: PropTypes.string,
 

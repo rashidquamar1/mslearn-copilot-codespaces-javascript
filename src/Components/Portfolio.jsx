@@ -58,25 +58,34 @@ const projectList = [
 
 const Portfolio = () => {
   return (
-    <section className="padding" id="portfolio">
-      <h2 style={{ textAlign: "center" }}>Portfolio</h2>
-      <div style={{ display: "flex", flexDirection: "row", paddingTop: "3rem" }}>
-        <div style={{ maxWidth: "40%", alignSelf: "center" }}>
-          <img
-            src={image}
-            style={{ height: "90%", width: "100%", objectFit: "cover" }}
-            alt={imageAltText}
-          />
+    <section className="portfolio-section page-section" id="portfolio">
+      <div className="page-shell">
+        <div className="portfolio-heading">
+          <p className="section-kicker">02 / Selected work</p>
+          <h2>A few things I&apos;ve been part of.</h2>
         </div>
-        <div className="container">
-          {projectList.map((project) => (
-            <div className="box" key={project.title}>
-              <a href={project.url} target="_blank" rel="noopener noreferrer">
-                <h3 style={{ flexBasis: "40px" }}>{project.title}</h3>
+        <div className="portfolio-layout">
+          <div className="portfolio-list">
+            {projectList.map((project, index) => (
+              <a
+                className="project-link"
+                href={project.url}
+                key={project.title}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="project-index">0{index + 1}</span>
+                <span className="project-copy">
+                  <h3>{project.title}</h3>
+                  <span className="project-description">{project.description}</span>
+                </span>
+                <span className="project-arrow" aria-hidden="true">&#8599;</span>
               </a>
-              <p className="small">{project.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <figure className="portfolio-figure">
+            <img src={image} alt={imageAltText} />
+          </figure>
         </div>
       </div>
     </section>
